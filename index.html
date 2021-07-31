@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Basic API</title>
+</head>
+<body>
+
+    <div class="loading">
+        <div class="spinner-border ml-auto" role="status" aria-hidden="true" style="margin: auto;"></div>
+    </div>
+
+    <!-- Alert -->
+
+    <div class="alert">
+        kjn
+    </div>
+
+    <div class="container-fluid first-block">
+        <div class="row title">
+            <h3>Add operator</h3>
+        </div>
+
+        <!-- adding form -->
+        <div class="container add-opp">
+            <form id="add-form" >
+                <div class="row add-opp-row">
+                    <div class="col-md-4">
+                        <select name="service" id="service" class="form-control" required>
+                            <option value="Select Service" >Select Service</option>
+                            <option value="My Service" >My Service</option>
+                            <option value="Service" >Service</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="service-api" id="service-api" class="form-control" required>
+                            <option value="Select Service Api" >Select Service Api</option>
+                            <option value="Service Api" >Service Api</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input name="product-name" id="product-name" class="form-control" required placeholder="Product Name/Stats">
+                    </div>
+                    
+                </div>
+                <div class="row add-opp-row">
+                    <div class="col-md-4">
+                        <input name="product-code" id="product-code" class="form-control" required placeholder="Product Code from api doc">
+                    </div>
+                    <div class="col-md-4">
+                        <select name="service-type" id="service-type" class="form-control" required>
+                            <option value="Select Type" >Select Type</option>
+                            <option value="Type" > Type</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="status" id="status" class="form-control" required>
+                            <option value="Select Status" >Select Status</option>
+                            <option value="Active" >Active</option>
+                            <option value="Pending" >Pending</option>
+                            <option value="Disable" >Disable</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row submit-btn">
+                    <div class="col-md-4">
+                        <button class="btn btn-primary submit" type="submit"> <i class="fa fa-plus"></i> Add operator</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Display data -->
+    <div class="container-fluid second-block">
+        <div class="row title">
+            <h3>Operator list</h3>
+        </div>
+
+        <hr>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Service</th>
+                <th scope="col">Api Name</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Api Code</th>
+                <th scope="col">Opt type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Submited Date</th>
+                <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="loader">
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="row">
+                        <strong>Loading...</strong>
+                    </th>
+                    <th scope="col"></th>
+                    <th scope="col">
+                        <div class="spinner-border ml-auto" role="status" aria-hidden="true"></div>
+                    </th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <!-- updating form -->
+
+    <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="updateModal">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myLargeModalLabel">Edit Operator</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container add-opp">
+                    <form id="update-form">
+                        <div class="row add-opp-row">
+                            <div class="col-md-4">
+                                <select name="service" id="service-update" class="form-control" required>
+                                    <option value="Select Service" >Select Service</option>
+                                    <option value="My Service" >My Service</option>
+                                    <option value="Service" >Service</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="service-api" id="service-api-update" class="form-control" required>
+                                    <option value="Select Service Api" >Select Service Api</option>
+                                    <option value="Service Api" >Service Api</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <input name="product-name" id="product-name-update" class="form-control" required placeholder="Product Name/Stats">
+                            </div>
+                            
+                        </div>
+                        <div class="row add-opp-row">
+                            <div class="col-md-4">
+                                <input name="product-code" id="product-code-update" class="form-control" required placeholder="Product Code from api doc">
+                            </div>
+                            <div class="col-md-4">
+                                <select name="service-type" id="service-type-update" class="form-control" required>
+                                    <option value="Select Type" >Select Type</option>
+                                    <option value="Type" > Type</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <select name="status" id="status-update" class="form-control" required>
+                                    <option value="Select Status" >Select Status</option>
+                                    <option value="Active" >Active</option>
+                                    <option value="Pending" >Pending</option>
+                                    <option value="Disable" >Disable</option>
+                                </select>
+                            </div>
+                        </div>
+        
+                        <div class="row submit-btn">
+                            <button class="btn btn-primary submit edit-btn" type="submit" > <i class="fa fa-plus"></i> Edit Operator</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    <!-- Deleting field -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="delModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Delete Operator</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Would you like to delete this operator ?
+                </p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+            <button type="button" class="btn btn-danger delete-btn">Yes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
